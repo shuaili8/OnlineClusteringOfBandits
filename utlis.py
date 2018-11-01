@@ -15,14 +15,3 @@ def invertible(S):
 def edge_probability(n):
 	return 3 * np.log(n) / n
 
-def select_item(S, b, items, beta):
-	num_items = np.shape(items)[0]
-	
-	if invertible(S):
-		Sinv = np.linalg.inv(S)
-		theta_est = np.dot(Sinv, b)
-		kk = np.argmax(np.dot(items, theta_est) + [beta * np.dot(items[k,:], np.dot(Sinv, items[k,:])) for k in range(num_items)])
-	else:
-		kk = np.random.randint(num_items)
-
-	return kk
