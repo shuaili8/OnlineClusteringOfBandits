@@ -2,8 +2,8 @@ import numpy as np
 from utlis import get_best_reward
 
 def generate_items(num_items, d):
-	x = np.random.normal(0, 1, (num_items, d))
-	x = np.concatenate((np.divide(x, np.outer(np.linalg.norm(x, axis = 1), np.ones(np.shape(x)[1]))), np.ones((num_items, 1))), axis = 1)
+	x = np.random.normal(0, 1, (num_items, d-1))
+	x = np.concatenate((np.divide(x, np.outer(np.linalg.norm(x, axis = 1), np.ones(np.shape(x)[1])))/np.sqrt(2), np.ones((num_items, 1))/np.sqrt(2)), axis = 1)
 	return x
 
 class Environment:
@@ -43,7 +43,7 @@ class Environment:
 
 class Synthetic(Environment):
 	def __init__(self, L, d, m, num_users, p, theta, fixed = False):
-		super(Synthetic, self).__init__()
+		super(Synthetic, self).__init__(L, d, m, num_users, p, theta, synthetic = True, fixed = fixed)
 		self.fixed = fixed
 		self.L = L
 		self.d = d
