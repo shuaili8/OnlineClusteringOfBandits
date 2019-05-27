@@ -71,6 +71,6 @@ def get_reduced_concrete_matrix(user_num, business_num):
     reduced_matrix = extract_rows(user_num, reduced_matrix)
     return reduced_matrix.toarray()
 
-m = get_reduced_concrete_matrix(1100, 1000)
+m = get_reduced_concrete_matrix(1000, 1000)
 print(m.shape)
-np.save("yelp_1100_1k.npy", m)
+np.save("yelp_1000user_1000item.npy", m)

@@ -53,12 +53,11 @@ def get_reduced_matrix(num_users, num_items, filename):
 	data1 = extract_users(3 * num_users, data)
 	data2 = extract_items(num_items, data1)
 	data3 = extract_users(num_users, data2)
-	return data3
+	return data3.toarray()
 
-filename = '/home/shuaili/Documents/MovieLens/ratings.csv'
-# filename = '/Users/lishuai/Downloads/ml-20m/ratings.csv'
+reduced_matrix = get_reduced_matrix(num_users = 1000, num_items = 1000, filename = 'MovieLens/ratings.csv')
+print(reduced_matrix.shape)
+np.save('ml_1000user_1000item', reduced_matrix)
+X = np.load('ml_1000user_1000item.npy')
+print(X.shape)
 
-reduced_matrix = get_reduced_matrix(num_users = 1100, num_items = 1000, filename = filename)
-X = reduced_matrix.toarray()
-with open('movielens_best_pool_1100_1k.pickle', 'wb') as f:
-	pickle.dump(X, f)

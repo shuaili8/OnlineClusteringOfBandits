@@ -39,10 +39,11 @@ class CLUB(LinUCB_IND):
         self.clusters[c].Sinv, self.clusters[c].theta = self._update_inverse(self.clusters[c].S, self.clusters[c].b, self.clusters[c].Sinv, x, self.clusters[c].N)
 
     def _if_split(self, theta, N1, N2):
-        alpha = 2 * np.sqrt(2 * self.d)
+        # alpha = 2 * np.sqrt(2 * self.d)
+        alpha = 1
         def _factT(T):
             return np.sqrt((1 + np.log(1 + T)) / (1 + T))
-        return np.linalg.norm(theta) >  2 * alpha * (_factT(N1) + _factT(N2))
+        return np.linalg.norm(theta) >  alpha * (_factT(N1) + _factT(N2))
  
     def update(self, t):
         update_clusters = False
